@@ -1,0 +1,85 @@
+
+
+<!-- .......................................................... -->
+ 
+{% extends 'employee/base.html' %}
+
+{% block content %}
+
+    <a class="btn btn-primary mb-3" href="{% url 'employee_create' %}">Add New Employee</a>
+
+    <!-- Filter Form -->
+    <form method="get" class="row g-3 mb-4">
+        <!-- Department Filter -->
+        <div class="col-md-3">
+            <label for="department" class="form-label">Department</label>
+            <select name="department" id="department" class="form-select">
+                <option value="">All</option>
+                <option value="HR">HR</option>
+                <option value="IT">IT</option>
+                <option value="FIN">Finance</option>
+                <option value="MKT">Marketing</option>
+                <option value="OPS">Operations</option>
+            </select>
+        </div>
+
+        <!-- Membership Filter -->
+        <div class="col-md-3">
+            <label for="membership" class="form-label">Membership Type</label>
+            <select name="membership" id="membership" class="form-select">
+                <option value="">All</option>
+                <option value="Basic">Basic</option>
+                <option value="Premium">Premium</option>
+                <option value="Elite">Elite</option>
+            </select>
+        </div>
+
+        <!-- Coaching Filter -->
+        <div class="col-md-3">
+            <label for="coaching" class="form-label">Coaching Category</label>
+            <select name="coaching" id="coaching" class="form-select">
+                <option value="">All</option>
+                <option value="Technical">Technical</option>
+                <option value="Soft Skills">Soft Skills</option>
+                <option value="Leadership">Leadership</option>
+            </select>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-success me-2">Filter</button>
+            <a href="{% url 'employee_list' %}" class="btn btn-secondary">Reset</a>
+        </div>
+    </form>
+
+    <!-- Employee Table -->
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Membership</th>
+                <th>Coaching</th>
+                <th>Joining Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in employees %}
+            <tr>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.department }}</td>
+                <td>{{ emp.membership_type }}</td>
+                <td>{{ emp.coaching_category }}</td>
+                <td>{{ emp.joining_date }}</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" href="{% url 'employee_update' emp.id %}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'employee_delete' emp.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
