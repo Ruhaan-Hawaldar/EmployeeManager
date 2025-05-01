@@ -15,6 +15,7 @@ from .forms import EmployeeForm
 def employee_list(request):
     membership = request.GET.get('membership')
     coaching = request.GET.get('coaching')
+    department = request.GET.get('department') 
     
     employees = Employee.objects.all()
 
@@ -23,6 +24,9 @@ def employee_list(request):
 
     if coaching:
         employees = employees.filter(coaching_category=coaching)
+
+    if department:  # <-- Add this block
+        employees = employees.filter(department=department)
 
     return render(request, 'employee/employee_list.html', {'employees': employees})
 
