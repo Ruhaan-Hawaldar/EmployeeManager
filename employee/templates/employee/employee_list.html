@@ -56,6 +56,7 @@
         <thead class="table-dark">
             <tr>
                 <th>Name</th>
+                <th>emp_no</th>
                 <th>Email</th>
                 <th>Department</th>
                 <th>Membership</th>
@@ -68,15 +69,31 @@
             {% for emp in employees %}
             <tr>
                 <td>{{ emp.name }}</td>
+                <td>{{ emp.emp_no }}</td>
                 <td>{{ emp.email }}</td>
                 <td>{{ emp.department }}</td>
                 <td>{{ emp.membership_type }}</td>
                 <td>{{ emp.coaching_category }}</td>
                 <td>{{ emp.joining_date }}</td>
                 <td>
+                    <!-- Edit & Delete -->
                     <a class="btn btn-sm btn-warning" href="{% url 'employee_update' emp.id %}">Edit</a>
                     <a class="btn btn-sm btn-danger" href="{% url 'employee_delete' emp.id %}">Delete</a>
+                
+                    <!-- Mark Present -->
+                    <form action="{% url 'mark_attendance_quick' emp.id 'Present' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-success">P</button>
+                    </form>
+                
+                    <!-- Mark Absent -->
+                    <form action="{% url 'mark_attendance_quick' emp.id 'Absent' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-secondary">A</button>
+                    </form>
                 </td>
+                
+
             </tr>
             {% endfor %}
         </tbody>

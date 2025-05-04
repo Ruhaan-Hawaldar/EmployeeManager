@@ -46,6 +46,7 @@ class Employee(models.Model):
     ]
 
     name = models.CharField(max_length=100)
+    emp_no = models.CharField(max_length=5)
     email = models.EmailField(unique=True)
     department = models.CharField(max_length=100, choices=DEPARTMENT_CHOICES)
     joining_date = models.DateField()

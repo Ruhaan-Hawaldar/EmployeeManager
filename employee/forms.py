@@ -11,7 +11,7 @@ class EmployeeForm(forms.ModelForm):
         model = Employee
         # fields = ['name', 'email', 'department', 'joining_date']
         # .......................
-        fields = ['name', 'email', 'department', 'joining_date', 'membership_type', 'coaching_category']
+        fields = ['emp_no','name', 'email', 'department', 'joining_date', 'membership_type', 'coaching_category']
         # .......................
 from django import forms
 from .models import Attendance

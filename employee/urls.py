@@ -11,6 +11,9 @@ urlpatterns = [
     path('attendance/list/', views.attendance_list, name='attendance_list'),
 
     path('attendance/export/', views.export_attendance_excel, name='export_attendance'),
+    # urls.py
+    path('mark-attendance/<int:emp_id>/<str:status>/', views.mark_attendance_quick, name='mark_attendance_quick'),
+
 
 
 ]

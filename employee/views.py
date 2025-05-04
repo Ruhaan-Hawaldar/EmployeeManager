@@ -124,3 +124,25 @@ def export_attendance_excel(request):
         writer.writerow([record.employee.name, record.date, record.status])
 
     return response
+
+# views.py
+from django.shortcuts import redirect, get_object_or_404
+from django.utils.timezone import now
+from .models import Attendance, Employee
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+
+@csrf_exempt
+def mark_attendance_quick(request, emp_id, status):
+    employee = get_object_or_404(Employee, id=emp_id)
+
+    # Only allow POST requests to mark attendance
+    if request.method == "POST":
+        today = now().date()
+        existing = Attendance.objects.filter(employee=employee, date=today).first()
+
+        if not existing:
+            Attendance.objects.create(employee=employee, date=today, status=status)
+
+    return redirect('employee_list')
