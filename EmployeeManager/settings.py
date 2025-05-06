@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-m0%y&h-vbl))-nl5ajb3p=e=o&_lc6+$8yz_vzd2um#ls2gvn&"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
-# ALLOWED_HOSTS = ['employeemanager-bnfi.onrender.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['employeemanager-bnfi.onrender.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
